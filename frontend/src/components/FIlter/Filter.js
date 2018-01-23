@@ -17,6 +17,7 @@ class Filter extends Component {
         {
           this.props.categories.map(category => (
             <button
+              key={category}
               type="button"
               style={{ width: '100px' }}
               className={
