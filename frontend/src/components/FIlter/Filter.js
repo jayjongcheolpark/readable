@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 
 class Filter extends Component {
+  state = {
+    filter: this.props.default
+  }
   clickHandler = (category) => {
-    this.props.selectFilter(category)
+    this.setState({
+      filter: category
+    }, () => this.props.selectFilter(category))
   }
 
   render () {
     return (
-      <div className="col-sm-6 col-lg-4 d-flex justify-content-around">
-        <span>Filter: </span>
+      <div className="d-flex justify-content-start">
+        <span className="mr-3">Filter: </span>
         {
           this.props.categories.map(category => (
             <span
-              onClick={this.clickHandler(category)}
+              className={
+                (category === this.state.filter) ?
+                'text-danger font-weight-bold mr-3' :
+                'text-dark font-weight-normal mr-3'
+              }
+              onClick={() => this.clickHandler(category)}
             >
               {category}
             </span>
