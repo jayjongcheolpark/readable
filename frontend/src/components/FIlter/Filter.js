@@ -15,6 +15,7 @@ class Filter extends Component {
       <div className="d-flex justify-content-start align-items-center mt-5">
         <span className="text-secondary mr-3">Filter: </span>
         {
+          (this.props.categories.length > 0) &&
           this.props.categories.map(category => (
             <button
               key={category}
