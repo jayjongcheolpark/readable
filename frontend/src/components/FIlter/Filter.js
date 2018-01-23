@@ -12,20 +12,22 @@ class Filter extends Component {
 
   render () {
     return (
-      <div className="d-flex justify-content-start">
-        <span className="mr-3">Filter: </span>
+      <div className="d-flex justify-content-start align-items-center mt-5">
+        <span className="text-secondary mr-3">Filter: </span>
         {
           this.props.categories.map(category => (
-            <span
+            <button
+              type="button"
+              style={{ width: '100px' }}
               className={
                 (category === this.state.filter) ?
-                'text-danger font-weight-bold mr-3' :
-                'text-dark font-weight-normal mr-3'
+                'btn btn-danger mr-3' :
+                'btn btn-outline-secondary mr-3'
               }
               onClick={() => this.clickHandler(category)}
             >
               {category}
-            </span>
+            </button>
           ))
         }
       </div>

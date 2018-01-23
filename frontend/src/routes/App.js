@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" Component={Main} />
+          <Route exact path="/" component={Main} />
           <Route exact path="/post/:id" component={PostDetail} />
           <Route exact path="/post/new" component={FormView} />
           <Route exact path="/post/edit/:id" component={FormView} />
