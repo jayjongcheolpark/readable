@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import Filter from '../components/FIlter/Filter'
 import { getAllCategories } from '../redux/actions'
 
-const categoriesDefault = [ 'ALL', 'REACT', 'REDUX', 'UDACITY' ]
+const categoriesDefault = [ 'All', 'React', 'Redux', 'Udacity' ]
 
 class Main extends Component {
   state = {
-    filter: 'ALL'
+    filter: 'All'
   }
 
   componentDidMount() {
