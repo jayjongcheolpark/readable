@@ -35,10 +35,12 @@ class Main extends Component {
           />
           {
             (this.props.posts && this.props.posts.length > 0) &&
-              <PostList
-                posts={this.props.posts}
-                filter={this.state.filter}
-              />
+              <div className="mt-4">
+                <PostList
+                  posts={this.props.posts}
+                  filter={this.state.filter}
+                />
+              </div>
           }
         </div>
 
