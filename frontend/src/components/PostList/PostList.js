@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
+import Post from '../Post/Post'
 
 class PostList extends Component {
   render () {
+    let posts
     if (this.props.filter === 'all') {
-      return this.props.posts
-        .map(post => <div key={post.id}>{post.title}</div>)
+      posts = this.props.posts
     } else {
-      return this.props.posts
-        .filter(post => post.category === this.props.filter)
-        .map(post => <div key={post.id}>{post.title}</div>)
+      posts = this.props.posts
+            .filter(post => post.category === this.props.filter)
     }
+    return (
+      <ul className="list-group">
+      {
+        posts.map(post => <Post key={post.id} post={post} />)
+      }
+      </ul>
+    )
   }
 }
 

@@ -10,7 +10,6 @@ class Filter extends Component {
     this.setState({
       filter: category
     }, () => this.props.selectFilter(category))
-    console.log(category)
   }
 
   render () {

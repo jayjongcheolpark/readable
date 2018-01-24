@@ -18,19 +18,12 @@ class Main extends Component {
   }
 
   selectFilter = (category) => {
-    console.log(category)
     this.setState({
       filter: category
     })
   }
 
   render () {
-    console.log(this.props)
-    let categories = this.props.categories
-    if (categories.length === 1) {
-      categories = categoriesDefault
-    }
-
     return (
       <div>
         <nav className="navbar bg-dark">
@@ -39,11 +32,11 @@ class Main extends Component {
         <div className="container">
           <Filter
               selectFilter={this.selectFilter}
-              categories={categories}
+              categories={this.props.categories}
               default={this.state.filter}
           />
           {
-            (this.props.posts.length > 0) &&
+            (this.props.posts && this.props.posts.length > 0) &&
               <PostList
                 posts={this.props.posts}
                 filter={this.state.filter}
