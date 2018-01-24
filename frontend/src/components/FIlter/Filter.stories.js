@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import backgrounds from '@storybook/addon-backgrounds'
 import Filter from './Filter'
 
-const categories = [ 'All', 'React', 'Redux', 'Udacity' ]
+const categories = [ 'all', 'react', 'redux', 'udacity' ]
 
 storiesOf('Filter', module)
   .addDecorator((story) => <div style={{ margin: '50px'}}>{story()}</div>)
@@ -16,7 +16,7 @@ storiesOf('Filter', module)
   ]))
   .add('default', () =>
     <Filter
-      default={'All'}
+      default={'all'}
       selectFilter={action('clicked')}
       categories={categories}
     />

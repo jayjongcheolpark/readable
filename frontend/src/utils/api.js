@@ -6,13 +6,13 @@ const headers = {
 }
 
 export async function getAllCategories() {
-  try {
-    const res = await axios.get(`/categories`, { headers })
-    return res.data.categories
-  } catch (e) {
-    console.log(e)
-    return []
-  }
+  const res = await axios.get(`/categories`, { headers })
+  return res.data.categories
+}
+
+export async function getPostsByCategory(category) {
+  const res = await axios.get(`/${category}/posts`, { headers })
+  return res.data
 }
 
 

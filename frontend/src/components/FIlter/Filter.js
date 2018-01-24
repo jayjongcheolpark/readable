@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 class Filter extends Component {
   state = {
     filter: this.props.default
   }
+
   clickHandler = (category) => {
     this.setState({
       filter: category
     }, () => this.props.selectFilter(category))
+    console.log(category)
   }
 
   render () {
@@ -28,7 +31,7 @@ class Filter extends Component {
               }
               onClick={() => this.clickHandler(category)}
             >
-              {category}
+              {_.capitalize(category)}
             </button>
           ))
         }
