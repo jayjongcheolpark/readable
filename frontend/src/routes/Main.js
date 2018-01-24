@@ -33,6 +33,9 @@ class Main extends Component {
               categories={this.props.categories}
               default={this.state.filter}
           />
+          <div className="mt-4 d-flex flex-row-reverse">
+            <Link className="btn btn-success" to="/post/new">New Post <i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+          </div>
           {
             (this.props.posts && this.props.posts.length > 0) &&
               <div className="mt-4">
