@@ -1,5 +1,20 @@
 import React from 'react'
 
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
+import reducers from '../../redux/reducers'
+import rootSaga from '../../redux/sagas'
+
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+  reducers,
+  applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(rootSaga)
+
 import { storiesOf, addDecorator } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import backgrounds from '@storybook/addon-backgrounds'
@@ -38,6 +53,11 @@ storiesOf('PostList', module)
     { name: "twitter", value: "#00aced" },
     { name: "facebook", value: "#3b5998" },
   ]))
+  .addDecorator((getStory) => (
+    <Provider store={store}>
+      { getStory() }
+    </Provider>
+ ))
   .add('default', () =>
     <PostList
       posts={defaultData}

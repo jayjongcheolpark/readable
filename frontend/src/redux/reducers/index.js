@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 import produce from "immer"
 import {
   GET_ALL_CATEGORIES_SUCCESS,
-  GET_POSTS_BY_CATEGORY_SUCCESS
+  GET_POSTS_BY_CATEGORY_SUCCESS,
+  UPVOTE_TO_POST_SUCCESS,
+  DOWNVOTE_TO_POST_SUCCESS
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) =>
@@ -23,6 +25,19 @@ const postReducer = (state = [], action) =>
         action.posts.forEach(post =>
           draft[index++] = post
         )
+        break
+      case UPVOTE_TO_POST_SUCCESS:
+      case DOWNVOTE_TO_POST_SUCCESS:
+        if (draft.length > 0) {
+          let index = 0
+          draft.forEach(post => {
+            if(post.id === action.post.id) {
+              draft[index] = action.post
+            }
+            index++
+          })
+        }
+        break
     }
   })
 
