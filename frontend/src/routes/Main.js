@@ -5,8 +5,6 @@ import Filter from '../components/FIlter/Filter'
 import { getAllCategories, getPostsByCategory } from '../redux/actions'
 import PostList from '../components/PostList/PostList'
 
-const categoriesDefault = [ 'all', 'react', 'redux', 'udacity' ]
-
 class Main extends Component {
   state = {
     filter: 'all'
