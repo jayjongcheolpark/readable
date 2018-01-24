@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import PostForm from '../components/PostForm/PostForm'
+import Header from '../components/Header/Header'
 
 class FormView extends Component {
   render () {
     return (
       <div>
-        <nav className="navbar bg-dark">
-          <Link className="navbar-brand text-light" to="/">Readable</Link>
-        </nav>
+        <Header />
         <div className="container p-5">
-          <PostForm />
+          <PostForm categories={this.props.categories} />
         </div>
       </div>
     )
   }
 }
 
-export default FormView
+const mapStateToProps = state => {
+  return {
+    categories: state.categories,
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(FormView)

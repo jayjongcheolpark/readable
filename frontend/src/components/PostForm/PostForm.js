@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 
 class PostForm extends Component {
   state = {
-    category: 'react'
-  }
-
-  componentDidMount() {
-
+    category: ''
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <form>

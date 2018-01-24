@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Filter from '../components/FIlter/Filter'
 import { getAllCategories, getPostsByCategory } from '../redux/actions'
 import PostList from '../components/PostList/PostList'
+import Header from '../components/Header/Header'
 
 class Main extends Component {
   state = {
@@ -24,9 +25,7 @@ class Main extends Component {
   render () {
     return (
       <div>
-        <nav className="navbar bg-dark">
-          <Link className="navbar-brand text-light" to="/">Readable</Link>
-        </nav>
+        <Header />
         <div className="container">
           <Filter
               selectFilter={this.selectFilter}
@@ -34,7 +33,13 @@ class Main extends Component {
               default={this.state.filter}
           />
           <div className="mt-4 d-flex flex-row-reverse">
-            <Link className="btn btn-success" to="/post/new">New Post <i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+            <Link
+              className="btn btn-success"
+              to="/post/new"
+            >
+              New Post
+              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </Link>
           </div>
           {
             (this.props.posts && this.props.posts.length > 0) &&
