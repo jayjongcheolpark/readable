@@ -22,6 +22,7 @@ const postReducer = (state = [], action) =>
   produce(state, draft => {
     switch (action.type) {
       case GET_POSTS_BY_CATEGORY_SUCCESS:
+      case DELETE_POST_SUCCESS:
         let index = 0
         action.posts.forEach(post =>
           draft[index++] = post
@@ -41,6 +42,7 @@ const postReducer = (state = [], action) =>
         break
       case ADD_POST_SUCCESS:
         draft.push(action.post)
+        break
     }
   })
 

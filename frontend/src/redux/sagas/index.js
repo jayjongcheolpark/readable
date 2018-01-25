@@ -17,7 +17,9 @@ import {
   DOWNVOTE_TO_POST,
   DOWNVOTE_TO_POST_SUCCESS,
   ADD_POST,
-  ADD_POST_SUCCESS
+  ADD_POST_SUCCESS,
+  DELETE_POST,
+  DELETE_POST_SUCCESS
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -73,6 +75,15 @@ function* addPost(action) {
   })
 }
 
+function* deletePost(action) {
+  yield call(API.deletePost, action.id)
+  const posts = yield call(getPostsByCategory, 'all')
+  yield put({
+    type: DELETE_POST_SUCCESS,
+    posts
+  })
+}
+
 function* watchGetAllCategories() {
   yield takeLatest(GET_ALL_CATEGORIES, getAllCategories)
 }
@@ -93,12 +104,17 @@ function* watchAddPost() {
   yield takeLatest(ADD_POST, addPost)
 }
 
+function* watchDeletePost() {
+  yield takeLatest(DELETE_POST, deletePost)
+}
+
 export default function* rootSaga() {
   yield all([
     fork(watchGetAllCategories),
     fork(watchGetPostsByCategory),
     fork(watchUpVoteToPost),
     fork(watchDownVoteToPost),
-    fork(watchAddPost)
+    fork(watchAddPost),
+    fork(watchDeletePost)
   ])
 }
