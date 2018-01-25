@@ -19,13 +19,16 @@ class Post extends Component {
       return <div />
     }
     const date = new Date(post.timestamp);
+    const hot = (post.voteScore >= 10) ? <span class="badge badge-danger">HOT</span> : <span />
     return (
       <li className="list-group-item">
-        <h2>{post.title}</h2>
-        <div className="text-muted">Posted by {post.author}</div>
-        <h5 className="mt-4">{post.body}</h5>
+        <h2>{post.title}{' '}{hot}</h2>
         <div>
-          <span className="text-muted">{date.toString()}</span>
+          <small className="text-muted">Posted by {post.author}</small>
+        </div>
+        <p className="h5 mt-4">{post.body}</p>
+        <div>
+          <small className="text-muted">{date.toString()}</small>
         </div>
         <div className="mt-3 p-2 d-flex justify-content-between">
           <div>
