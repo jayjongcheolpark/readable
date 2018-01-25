@@ -4,7 +4,8 @@ import {
   GET_ALL_CATEGORIES_SUCCESS,
   GET_POSTS_BY_CATEGORY_SUCCESS,
   UPVOTE_TO_POST_SUCCESS,
-  DOWNVOTE_TO_POST_SUCCESS
+  DOWNVOTE_TO_POST_SUCCESS,
+  ADD_POST_SUCCESS
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) =>
@@ -38,6 +39,8 @@ const postReducer = (state = [], action) =>
           })
         }
         break
+      case ADD_POST_SUCCESS:
+        draft.push(action.post)
     }
   })
 

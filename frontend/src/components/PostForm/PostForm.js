@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import { Redirect } from 'react-router-dom'
 
 class PostForm extends Component {
   state = {
     category: "react",
     title: "",
     content: "",
-    author: ""
+    author: "",
+    redirect: false
   }
 
   handleChange= (e, key) => {
@@ -17,9 +19,20 @@ class PostForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    const post = {
+      category: this.state.category,
+      title: this.state.title,
+      body: this.state.content,
+      author: this.state.author
+    }
+    this.props.addPost(post)
+    this.setState({ redirect: true })
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />
+    }
     const { categories } = this.props
     if (categories.length === 0) {
       return <div />

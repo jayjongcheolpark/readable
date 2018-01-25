@@ -16,6 +16,8 @@ import {
   UPVOTE_TO_POST_SUCCESS,
   DOWNVOTE_TO_POST,
   DOWNVOTE_TO_POST_SUCCESS,
+  ADD_POST,
+  ADD_POST_SUCCESS
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -61,7 +63,14 @@ function* downVoteToPost(action) {
     type: DOWNVOTE_TO_POST_SUCCESS,
     post
   })
+}
 
+function* addPost(action) {
+  const post = yield call(API.addPost, action.post)
+  yield put({
+    type: ADD_POST_SUCCESS,
+    post
+  })
 }
 
 function* watchGetAllCategories() {
@@ -76,8 +85,12 @@ function* watchUpVoteToPost() {
   yield takeEvery(UPVOTE_TO_POST, upVoteToPost)
 }
 
- function* watchDownVoteToPost() {
+function* watchDownVoteToPost() {
   yield takeEvery(DOWNVOTE_TO_POST, downVoteToPost)
+}
+
+function* watchAddPost() {
+  yield takeLatest(ADD_POST, addPost)
 }
 
 export default function* rootSaga() {
@@ -85,6 +98,7 @@ export default function* rootSaga() {
     fork(watchGetAllCategories),
     fork(watchGetPostsByCategory),
     fork(watchUpVoteToPost),
-    fork(watchDownVoteToPost)
+    fork(watchDownVoteToPost),
+    fork(watchAddPost)
   ])
 }

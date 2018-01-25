@@ -1,5 +1,5 @@
 import axios from 'axios'
-import uuid from 'node-uuid'
+import uuidV1 from 'uuid/v1'
 
 const headers = {
   'Accept': 'application/json',
@@ -33,7 +33,7 @@ export async function downVoteToPost(id) {
 }
 
 export async function addPost({ category, title, body, author }) {
-  const id = uuid.v1
+  const id = uuidV1()
   const timestamp = Date.now()
   const res = await axios.post(`/posts`, {
     id, timestamp, title, body, author, category

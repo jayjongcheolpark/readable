@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostForm from '../components/PostForm/PostForm'
 import Header from '../components/Header/Header'
-import { getAllCategories } from '../redux/actions'
+import { getAllCategories, addPost } from '../redux/actions'
 
 class FormView extends Component {
 
@@ -10,12 +10,19 @@ class FormView extends Component {
     this.props.getAllCategories()
   }
 
+  addPostHandler = (post) => {
+    this.props.addPost(post)
+  }
+
   render () {
     return (
       <div>
         <Header />
         <div className="container p-5">
-          <PostForm categories={this.props.categories} />
+          <PostForm
+            addPost={this.addPostHandler}
+            categories={this.props.categories}
+          />
         </div>
       </div>
     )
@@ -29,5 +36,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps, { getAllCategories }
+  mapStateToProps, { getAllCategories, addPost }
 )(FormView)
