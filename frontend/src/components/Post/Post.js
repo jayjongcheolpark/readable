@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import TextTruncate from 'react-text-truncate'
 import { upVoteToPost, downVoteToPost } from '../../redux/actions'
 
 class Post extends Component {
@@ -26,7 +27,13 @@ class Post extends Component {
         <div>
           <small className="text-muted">Posted by {post.author}</small>
         </div>
-        <p className="h5 mt-4">{post.body}</p>
+        <p className="h5 mt-4">
+          <TextTruncate
+            line={1}
+            truncateText="..."
+            text={post.body}
+          />
+        </p>
         <div>
           <small className="text-muted">{date.toString()}</small>
         </div>
