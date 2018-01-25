@@ -11,4 +11,4 @@ storiesOf('PostForm', module)
     { name: "twitter", value: "#00aced" },
     { name: "facebook", value: "#3b5998" },
   ]))
-  .add('default', () => <PostForm />)
+  .add('default', () => <PostForm categories={["all", "react", "redux", "udacity"]}/>)
