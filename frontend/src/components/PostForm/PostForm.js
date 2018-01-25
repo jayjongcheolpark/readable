@@ -1,12 +1,41 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 class PostForm extends Component {
   state = {
-    category: ''
+    category: "react"
+  }
+
+  handleOptionChange = (changeEvent) => {
+    this.setState({
+      category: changeEvent.target.value
+    })
   }
 
   render() {
-    console.log(this.props)
+    const { categories } = this.props
+    if (categories.length === 0) {
+      return <div />
+    }
+
+    const renderRadioForCategory = () => {
+      return categories
+        .filter(category => category !== "all")
+        .map(category => {
+          return (
+            <label style={{ width: "100px" }}key={category} className={`btn ${this.state.category === category ? 'btn-danger active' : 'btn-secondary'}`}>
+              <input
+                type="radio" name="categories" id={category}
+                autoComplete="off" value={category}
+                onChange={this.handleOptionChange}
+                checked={this.state.category === category}
+              />
+              {_.capitalize(category)}
+            </label>
+          )
+        })
+    }
+
     return (
       <div>
         <form>
@@ -15,15 +44,9 @@ class PostForm extends Component {
             className="btn-group btn-group-toggle mb-4"
             data-toggle="buttons"
           >
-            <label className="btn btn-outline-secondary">
-              <input type="radio" name="categories" id="react" autoComplete="off" />React
-            </label>
-            <label className="btn btn-outline-secondary">
-              <input type="radio" name="categories" id="redux" autoComplete="off" />Redux
-            </label>
-            <label className="btn btn-outline-secondary">
-              <input type="radio" name="categories" id="udacity" autoComplete="off" />Udacity
-            </label>
+            {
+              renderRadioForCategory()
+            }
           </div>
           <div className="form-group">
             <label htmlFor="inputTitle">Title</label>

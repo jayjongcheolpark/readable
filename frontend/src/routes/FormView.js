@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostForm from '../components/PostForm/PostForm'
 import Header from '../components/Header/Header'
+import { getAllCategories } from '../redux/actions'
 
 class FormView extends Component {
+
+  componentDidMount() {
+    this.props.getAllCategories()
+  }
+
   render () {
     return (
       <div>
@@ -23,5 +29,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, { getAllCategories }
 )(FormView)
