@@ -42,3 +42,9 @@ export async function addPost({ category, title, body, author }) {
   return res.data
 }
 
+export async function deletePost(id) {
+  const res = await axios.delete(`/posts/${id}`, { headers })
+
+  return res.data
+}
+
