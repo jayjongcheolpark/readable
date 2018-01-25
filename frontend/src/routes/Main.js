@@ -37,8 +37,7 @@ class Main extends Component {
               className="btn btn-success"
               to="/post/new"
             >
-              New Post
-              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+              New Post{' '}<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
           </div>
           {
