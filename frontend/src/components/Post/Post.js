@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import { upVoteToPost, downVoteToPost } from '../../redux/actions'
 
 class Post extends Component {
@@ -27,7 +28,14 @@ class Post extends Component {
           <span className="text-muted">{date.toString()}</span>
         </div>
         <div className="mt-3 p-2 d-flex justify-content-between">
-          <button className="btn btn-outline-info" disabled>{post.category}<span className="badge badge-light">{post.voteScore}</span></button>
+          <div>
+            <span className="badge badge-primary mr-2" disabled>
+              {_.capitalize(post.category)}
+            </span>
+            <span className="badge badge-secondary" disabled>
+              Vote{' '}<span className="text-warning">{post.voteScore}</span>
+            </span>
+          </div>
           <div>
             <button onClick={this.upVote} className="btn btn-outline-primary mr-3">
             <i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
