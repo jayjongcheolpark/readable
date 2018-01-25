@@ -61,6 +61,7 @@ class PostForm extends Component {
               type="text" className="form-control" id="inputTitle"
               value={this.state.title} required
               onChange={(e) => this.handleChange(e, "title")}
+              placeholder="Enter Title"
             />
           </div>
           <div className="form-group">
@@ -69,6 +70,7 @@ class PostForm extends Component {
               type="text" className="form-control" id="inputContent"
               value={this.state.content} required
               onChange={(e) => this.handleChange(e, "content")}
+              placeholder="Enter Content"
             />
           </div>
           <div className="form-group">
@@ -77,6 +79,7 @@ class PostForm extends Component {
               type="text" className="form-control" id="inputAuthor"
               value={this.state.author} required
               onChange={(e) => this.handleChange(e, "author")}
+              placeholder="Enter Author"
             />
           </div>
           <div className="mt-5">
