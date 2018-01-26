@@ -76,11 +76,10 @@ function* addPost(action) {
 }
 
 function* deletePost(action) {
-  yield call(API.deletePost, action.id)
-  const posts = yield call(getPostsByCategory, 'all')
+  const post = yield call(API.deletePost, action.id)
   yield put({
     type: DELETE_POST_SUCCESS,
-    posts
+    post
   })
 }
 

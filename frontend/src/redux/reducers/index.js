@@ -5,7 +5,8 @@ import {
   GET_POSTS_BY_CATEGORY_SUCCESS,
   UPVOTE_TO_POST_SUCCESS,
   DOWNVOTE_TO_POST_SUCCESS,
-  ADD_POST_SUCCESS
+  ADD_POST_SUCCESS,
+  DELETE_POST_SUCCESS
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) =>
@@ -22,11 +23,12 @@ const postReducer = (state = [], action) =>
   produce(state, draft => {
     switch (action.type) {
       case GET_POSTS_BY_CATEGORY_SUCCESS:
-      case DELETE_POST_SUCCESS:
-        let index = 0
-        action.posts.forEach(post =>
-          draft[index++] = post
-        )
+        if (action.posts.length > 0) {
+          let index = 0
+          action.posts.forEach(post =>
+            draft[index++] = post
+          )
+        }
         break
       case UPVOTE_TO_POST_SUCCESS:
       case DOWNVOTE_TO_POST_SUCCESS:
@@ -43,6 +45,18 @@ const postReducer = (state = [], action) =>
       case ADD_POST_SUCCESS:
         draft.push(action.post)
         break
+      case DELETE_POST_SUCCESS:
+        let index = 0
+        let found = -1
+        draft.forEach(post => {
+          if (post.id === action.post.id) {
+            found = index
+          }
+          index++
+        })
+        if (found > -1) {
+          draft.splice(found, 1)
+        }
     }
   })
 

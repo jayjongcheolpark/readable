@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import TextTruncate from 'react-text-truncate'
-import { upVoteToPost, downVoteToPost } from '../../redux/actions'
+import {
+  upVoteToPost,
+  downVoteToPost,
+  deletePost
+} from '../../redux/actions'
 
 class Post extends Component {
   state = {
@@ -21,6 +25,10 @@ class Post extends Component {
 
   downVote = () => {
     this.props.downVoteToPost(this.props.post.id)
+  }
+
+  handlerDeletePost = () => {
+    this.props.deletePost(this.props.post.id)
   }
 
   render() {
@@ -55,6 +63,7 @@ class Post extends Component {
             aria-label="Close"
             onMouseEnter={this.toggleHover}
             onMouseLeave={this.toggleHover}
+            onClick={this.handlerDeletePost}
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -97,4 +106,4 @@ class Post extends Component {
   }
 }
 
-export default connect(null, { upVoteToPost, downVoteToPost })(Post)
+export default connect(null, { upVoteToPost, downVoteToPost, deletePost })(Post)
