@@ -13,7 +13,16 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.getAllCategories()
-    this.props.getPostsByCategory(this.state.filter)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const nextCategories = nextProps.categories
+    const thisCategories = this.props.categories
+    if (thisCategories.length === 0 && nextCategories.length !== 0) {
+      nextCategories.forEach(category => {
+        this.props.getPostsByCategory(category)
+      })
+    }
   }
 
   selectFilter = (category) => {

@@ -36,18 +36,12 @@ function* getAllCategories() {
 function* getPostsByCategory(action) {
   let posts
 
-  if (action.category === 'all') {
-    const react = yield call(API.getPostsByCategory, 'react')
-    const redux = yield call(API.getPostsByCategory, 'redux')
-    const udacity = yield call(API.getPostsByCategory, 'udacity')
-    posts = [ ...react, ...redux, ...udacity ]
-  } else {
-    posts = yield call(API.getPostsByCategory, action.category)
-  }
+  posts = yield call(API.getPostsByCategory, action.category)
 
   yield put({
     type: GET_POSTS_BY_CATEGORY_SUCCESS,
-    posts
+    posts,
+    category: action.category
   })
 }
 
@@ -88,7 +82,7 @@ function* watchGetAllCategories() {
 }
 
 function* watchGetPostsByCategory() {
-  yield takeLatest(GET_POSTS_BY_CATEGORY, getPostsByCategory)
+  yield takeEvery(GET_POSTS_BY_CATEGORY, getPostsByCategory)
 }
 
 function* watchUpVoteToPost() {
