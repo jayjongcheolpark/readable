@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
+import RadioButton from '../Form/RadioButton/RadioButton'
 
 class PostForm extends Component {
   state = {
@@ -11,7 +11,7 @@ class PostForm extends Component {
     redirect: false
   }
 
-  handleChange= (e, key) => {
+  handleChange = (e, key) => {
     this.setState({
       [key]: e.target.value
     })
@@ -43,15 +43,12 @@ class PostForm extends Component {
         .filter(category => category !== "all")
         .map(category => {
           return (
-            <label style={{ width: "100px" }}key={category} className={`btn ${this.state.category === category ? 'btn-danger active' : 'btn-secondary'}`}>
-              <input
-                type="radio" name="categories" id={category}
-                autoComplete="off" value={category}
-                onChange={(e) => this.handleChange(e, "category")}
-                checked={this.state.category === category}
-              />
-              {_.capitalize(category)}
-            </label>
+            <RadioButton
+              name="categories"
+              category={category}
+              handleChange={this.handleChange}
+              checked={this.state.category === category}
+            />
           )
         })
     }
