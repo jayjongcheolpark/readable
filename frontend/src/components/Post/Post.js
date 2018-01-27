@@ -7,6 +7,7 @@ import {
   downVoteToPost,
   deletePost
 } from '../../redux/actions'
+import IconButton from '../IconButton/IconButton';
 
 class Post extends Component {
   state = {
@@ -87,18 +88,16 @@ class Post extends Component {
             </span>
           </div>
           <div>
-            <button
-              onClick={this.upVote}
-              className="btn btn-outline-primary mr-3"
-            >
-              <i className="fa fa-thumbs-o-up" aria-hidden="true" />
-            </button>
-            <button
-              onClick={this.downVote}
-              className="btn btn-outline-secondary"
-            >
-              <i className="fa fa-thumbs-o-down" aria-hidden="true" />
-            </button>
+            <IconButton
+              buttonClass="btn btn-outline-primary mr-3"
+              iconClass="fa fa-thumbs-o-up"
+              clickHandler={this.upVote}
+            />
+            <IconButton
+              buttonClass="btn btn-outline-secondary"
+              iconClass="fa fa-thumbs-o-down"
+              clickHandler={this.downVote}
+            />
           </div>
         </div>
       </li>
