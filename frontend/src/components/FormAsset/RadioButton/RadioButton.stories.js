@@ -18,8 +18,8 @@ storiesOf('RadioButton', module)
       data-toggle="buttons"
     >
       <RadioButton
-        name="categories"
-        category="react"
+        name="category"
+        val="react"
         handleChange={action("clicked")}
         checked={false}
       />
@@ -31,8 +31,8 @@ storiesOf('RadioButton', module)
       data-toggle="buttons"
     >
       <RadioButton
-        name="categories"
-        category="react"
+        name="category"
+        val="react"
         handleChange={action("clicked")}
         checked={true}
       />

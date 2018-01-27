@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import RadioButton from '../Form/RadioButton/RadioButton'
+import RadioForm from '../FormAsset/RadioForm/RadioForm'
+import InputText from '../FormAsset/InputText/InputText'
+import InputArea from '../FormAsset/InputArea/InputArea'
 
 class PostForm extends Component {
   state = {
@@ -37,61 +39,33 @@ class PostForm extends Component {
     if (categories.length === 0) {
       return <div />
     }
-
-    const renderRadioForCategory = () => {
-      return categories
-        .filter(category => category !== "all")
-        .map(category => {
-          return (
-            <RadioButton
-              name="categories"
-              category={category}
-              handleChange={this.handleChange}
-              checked={this.state.category === category}
-            />
-          )
-        })
-    }
-
-    return (
+      return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label className="d-block">Category</label>
-          <div
-            className="btn-group btn-group-toggle mb-4"
-            data-toggle="buttons"
-          >
-            {
-              renderRadioForCategory()
-            }
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputTitle">Title</label>
-            <input
-              type="text" className="form-control" id="inputTitle"
-              value={this.state.title} required
-              onChange={(e) => this.handleChange(e, "title")}
-              placeholder="Enter Title"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputContent">Content</label>
-            <textarea
-              type="text" className="form-control" id="inputContent"
-              value={this.state.content} required
-              onChange={(e) => this.handleChange(e, "content")}
-              placeholder="Enter Content"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputAuthor">Author</label>
-            <input
-              type="text" className="form-control" id="inputAuthor"
-              value={this.state.author} required
-              onChange={(e) => this.handleChange(e, "author")}
-              placeholder="Enter Author"
-            />
-          </div>
+          <RadioForm
+            label="Category"
+            array={categories}
+            checked={this.state.category}
+            handleChange={this.handleChange}
+          />
+          <InputText
+            id="title"
+            value={this.state.title}
+            handleChange={this.handleChange}
+            required={true}
+          />
+          <InputArea
+            id="content"
+            value={this.state.content}
+            handleChange={this.handleChange}
+            required={true}
+          />
+          <InputText
+            id="author"
+            value={this.state.author}
+            handleChange={this.handleChange}
+            required={true}
+          />
           <div className="mt-5">
             <button type="submit" className="btn btn-lg btn-primary btn-block">
               Submit

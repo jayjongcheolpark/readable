@@ -1,11 +1,10 @@
 import React from 'react'
 import _ from 'lodash'
 
-const RadioForm = ({ name, category, handleChange, checked = false }) => {
+const RadioForm = ({ name, val, handleChange, checked = false }) => {
   return (
     <label
       style={{ width: '100px' }}
-      key={category}
       className={`btn ${
         checked
           ? 'btn-danger active'
@@ -14,14 +13,13 @@ const RadioForm = ({ name, category, handleChange, checked = false }) => {
     >
       <input
         type="radio"
-        name={name}
-        id={category}
+        id={val}
         autoComplete="off"
-        value={category}
-        onChange={e => handleChange(e, 'category')}
-        checked={checked}
+        value={val}
+        onChange={e => handleChange(e, name)}
+        checked={val}
       />
-      {_.capitalize(category)}
+      {_.capitalize(val)}
     </label>
   )
 }
