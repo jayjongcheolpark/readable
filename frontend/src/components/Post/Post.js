@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import _ from 'lodash'
 import TextTruncate from 'react-text-truncate'
-import ReactLoading from 'react-loading'
 import {
   upVoteToPost,
   downVoteToPost,
@@ -11,6 +9,8 @@ import {
 } from '../../redux/actions'
 import IconButton from '../PostAsset/IconButton/IconButton'
 import CloseButton from '../PostAsset/CloseButton/CloseButton'
+import VoteBadge from '../PostAsset/VoteBadge/VoteBadge'
+import CategoryBadge from '../PostAsset/CategoryBadge/CategoryBadge'
 
 class Post extends Component {
   state = {
@@ -37,27 +37,15 @@ class Post extends Component {
 
   render() {
     const { post } = this.props
-    if (!post) {
-      return (
-        <li className="list-group-item d-flex justify-content-center p-3">
-          <ReactLoading
-            type="spin" color="#000000"
-            height='64px' width='64px'
-          />
-        </li>
-      )
-    }
 
     const closeStyle = (this.state.hover) ? 'text-danger' : 'text-muted'
 
     const date = new Date(post.timestamp)
-    const hot = post.voteScore >= 10 ?
-      (<span className="badge badge-danger">HOT</span>) :
-      (<span />)
+
     return (
       <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-start">
-          <Link className="h2" to={`/post/${post.id}`}>{post.title} {hot}</Link>
+          <Link className="h2" to={`/post/${post.id}`}>{post.title}</Link>
           <CloseButton
             closeStyle={closeStyle}
             toggleHover={this.toggleHover}
@@ -73,14 +61,12 @@ class Post extends Component {
         <div>
           <small className="text-muted">{date.toString()}</small>
         </div>
-        <div className="mt-3 p-2 d-flex justify-content-between">
+        <v className="mt-3 p-2 d-flex justify-content-between">
           <div>
-            <span className="badge badge-primary mr-2" disabled>
-              {_.capitalize(post.category)}
+            <span className="mr-2">
+              <CategoryBadge category={post.category} />
             </span>
-            <span className="badge badge-secondary" disabled>
-              Vote <span className="text-warning">{post.voteScore}</span>
-            </span>
+            <VoteBadge voteScore={post.voteScore} />
           </div>
           <div>
             <IconButton
@@ -94,7 +80,7 @@ class Post extends Component {
               clickHandler={this.downVote}
             />
           </div>
-        </div>
+        </v>
       </li>
     )
   }
