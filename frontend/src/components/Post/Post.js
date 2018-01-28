@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import TextTruncate from 'react-text-truncate'
 import {
@@ -7,8 +8,8 @@ import {
   downVoteToPost,
   deletePost
 } from '../../redux/actions'
-import IconButton from '../PostAsset/IconButton/IconButton';
-import CloseButton from '../PostAsset/CloseButton/CloseButton';
+import IconButton from '../PostAsset/IconButton/IconButton'
+import CloseButton from '../PostAsset/CloseButton/CloseButton'
 
 class Post extends Component {
   state = {
@@ -42,16 +43,13 @@ class Post extends Component {
     const closeStyle = (this.state.hover) ? 'text-danger' : 'text-muted'
 
     const date = new Date(post.timestamp)
-    const hot =
-      post.voteScore >= 10 ? (
-        <span className="badge badge-danger">HOT</span>
-      ) : (
-        <span />
-      )
+    const hot = post.voteScore >= 10 ?
+      (<span className="badge badge-danger">HOT</span>) :
+      (<span />)
     return (
       <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-start">
-          <h2>{post.title} {hot}</h2>
+          <Link className="h2" to={`/post/${post.id}`}>{post.title} {hot}</Link>
           <CloseButton
             closeStyle={closeStyle}
             toggleHover={this.toggleHover}
