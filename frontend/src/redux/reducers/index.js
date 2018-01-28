@@ -6,6 +6,7 @@ import {
   DOWNVOTE_TO_POST_SUCCESS,
   ADD_POST_SUCCESS,
   DELETE_POST_SUCCESS,
+  GET_POST_BY_ID_SUCCESS,
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) => {
@@ -46,7 +47,17 @@ const postReducer = (state = [], action) => {
   }
 }
 
+const postDetailReducer = (state = {}, action) => {
+  switch (action.type) {
+      case GET_POST_BY_ID_SUCCESS:
+        return { ...action.post }
+      default:
+        return state
+  }
+}
+
 export default combineReducers({
   categories: categoryReducer,
-  posts: postReducer
+  posts: postReducer,
+  post: postDetailReducer
 })

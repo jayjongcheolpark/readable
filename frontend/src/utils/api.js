@@ -48,3 +48,9 @@ export async function deletePost(id) {
   return res.data
 }
 
+export async function getPostById(id) {
+  const res = await axios.get(`/posts/${id}`, { headers })
+
+  return res.data
+}
+

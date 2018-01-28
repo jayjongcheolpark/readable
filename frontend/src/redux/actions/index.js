@@ -6,7 +6,8 @@ import {
   UPVOTE_TO_COMMENT,
   DOWNVOTE_TO_COMMENT,
   ADD_POST,
-  DELETE_POST
+  DELETE_POST,
+  GET_POST_BY_ID
 } from '../constants/actionTypes'
 
 export const getAllCategories = () => ({
@@ -45,5 +46,10 @@ export const addPost = (post) => ({
 
 export const deletePost = (id) => ({
   type: DELETE_POST,
+  id
+})
+
+export const getPostById = (id) => ({
+  type: GET_POST_BY_ID,
   id
 })
