@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import TextTruncate from 'react-text-truncate'
+import ReactLoading from 'react-loading'
 import {
   upVoteToPost,
   downVoteToPost,
@@ -37,7 +38,14 @@ class Post extends Component {
   render() {
     const { post } = this.props
     if (!post) {
-      return <div />
+      return (
+        <li className="list-group-item d-flex justify-content-center p-3">
+          <ReactLoading
+            type="spin" color="#000000"
+            height='64px' width='64px'
+          />
+        </li>
+      )
     }
 
     const closeStyle = (this.state.hover) ? 'text-danger' : 'text-muted'
