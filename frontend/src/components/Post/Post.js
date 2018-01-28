@@ -8,6 +8,7 @@ import {
   deletePost
 } from '../../redux/actions'
 import IconButton from '../IconButton/IconButton';
+import CloseButton from '../CloseButton/CloseButton';
 
 class Post extends Component {
   state = {
@@ -38,12 +39,7 @@ class Post extends Component {
       return <div />
     }
 
-    let closeStyle
-    if (this.state.hover) {
-      closeStyle = 'text-danger'
-    } else {
-      closeStyle = 'text-muted'
-    }
+    const closeStyle = (this.state.hover) ? 'text-danger' : 'text-muted'
 
     const date = new Date(post.timestamp)
     const hot =
@@ -55,19 +51,12 @@ class Post extends Component {
     return (
       <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-start">
-          <h2>
-            {post.title} {hot}
-          </h2>
-          <button
-            type="button"
-            className={`close ${closeStyle}`}
-            aria-label="Close"
-            onMouseEnter={this.toggleHover}
-            onMouseLeave={this.toggleHover}
-            onClick={this.handlerDeletePost}
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h2>{post.title} {hot}</h2>
+          <CloseButton
+            closeStyle={closeStyle}
+            toggleHover={this.toggleHover}
+            handlerDeletePost={this.handlerDeletePost}
+          />
         </div>
         <div>
           <small className="text-muted">Posted by {post.author}</small>
