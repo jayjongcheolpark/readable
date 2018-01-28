@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class CloseButton extends Component {
   render() {
-    const { closeStyle, toggleHover, handlerDeletePost } = this.props
+    const { closeStyle, toggleHover, handleDeletePost } = this.props
     return (
       <button
         type="button"
@@ -10,7 +10,7 @@ class CloseButton extends Component {
         aria-label="Close"
         onMouseEnter={toggleHover}
         onMouseLeave={toggleHover}
-        onClick={handlerDeletePost}
+        onClick={handleDeletePost}
       >
         <span aria-hidden="true">&times;</span>
       </button>

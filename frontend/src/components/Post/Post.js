@@ -7,8 +7,8 @@ import {
   downVoteToPost,
   deletePost
 } from '../../redux/actions'
-import IconButton from '../IconButton/IconButton';
-import CloseButton from '../CloseButton/CloseButton';
+import IconButton from '../PostAsset/IconButton/IconButton';
+import CloseButton from '../PostAsset/CloseButton/CloseButton';
 
 class Post extends Component {
   state = {
@@ -29,7 +29,7 @@ class Post extends Component {
     this.props.downVoteToPost(this.props.post.id)
   }
 
-  handlerDeletePost = () => {
+  handleDeletePost = () => {
     this.props.deletePost(this.props.post.id)
   }
 
@@ -55,7 +55,7 @@ class Post extends Component {
           <CloseButton
             closeStyle={closeStyle}
             toggleHover={this.toggleHover}
-            handlerDeletePost={this.handlerDeletePost}
+            handleDeletePost={this.handlerDeletePost}
           />
         </div>
         <div>
