@@ -49,7 +49,7 @@ class Post extends Component {
           <CloseButton
             closeStyle={closeStyle}
             toggleHover={this.toggleHover}
-            handleDeletePost={this.handlerDeletePost}
+            handleDeletePost={this.handleDeletePost}
           />
         </div>
         <div>
@@ -61,7 +61,7 @@ class Post extends Component {
         <div>
           <small className="text-muted">{date.toString()}</small>
         </div>
-        <v className="mt-3 p-2 d-flex justify-content-between">
+        <div className="mt-3 p-2 d-flex justify-content-between">
           <div>
             <span className="mr-2">
               <CategoryBadge category={post.category} />
@@ -80,7 +80,7 @@ class Post extends Component {
               clickHandler={this.downVote}
             />
           </div>
-        </v>
+        </div>
       </li>
     )
   }
