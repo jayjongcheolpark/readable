@@ -24,7 +24,29 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     commentCount: 0
-  }
+  },
+  "42k3jklrjlkdfsd9fd9sdf": {
+    id: '42k3jklrjlkdfsd9fd9sdf',
+    timestamp: 1468479768222,
+    title: 'Redux Core Concepts',
+    body: 'Redux is a predictable state container for JavaScript apps. (Not to be confused with a WordPress framework – Redux Framework.) It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.',
+    author: 'Dan Abramov',
+    category: 'redux',
+    voteScore: 11,
+    deleted: false,
+    commentCount: 0
+  },
+  "dfjkdfd890u38782hjh2d8": {
+    id: 'dfjkdfd890u38782hjh2d8',
+    timestamp: 1568479768000,
+    title: 'React Nanodegree Program',
+    body: "For the Readable project, you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.",
+    author: 'mentor',
+    category: 'udacity',
+    voteScore: 12,
+    deleted: false,
+    commentCount: 0
+  },
 }
 
 function getData (token) {
