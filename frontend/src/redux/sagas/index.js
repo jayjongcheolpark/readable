@@ -1,5 +1,4 @@
 import {
-  fork,
   put,
   call,
   all,
@@ -97,47 +96,22 @@ function* editPostById(action) {
   })
 }
 
-function* watchGetAllCategories() {
-  yield takeLatest(GET_ALL_CATEGORIES, getAllCategories)
-}
-
-function* watchGetPostsByCategory() {
-  yield takeEvery(GET_POSTS_BY_CATEGORY, getPostsByCategory)
-}
-
-function* watchUpVoteToPost() {
-  yield takeEvery(UPVOTE_TO_POST, upVoteToPost)
-}
-
-function* watchDownVoteToPost() {
-  yield takeEvery(DOWNVOTE_TO_POST, downVoteToPost)
-}
-
-function* watchAddPost() {
-  yield takeLatest(ADD_POST, addPost)
-}
-
-function* watchDeletePost() {
-  yield takeLatest(DELETE_POST, deletePost)
-}
-
-function* watchGetPostsById() {
-  yield takeLatest(GET_POST_BY_ID, getPostById)
-}
-
-function* watchEditPostById() {
-  yield takeLatest(EDIT_POST_BY_ID, editPostById)
-}
+const categorySaga = [
+  takeLatest(GET_ALL_CATEGORIES, getAllCategories)
+]
+const postSaga = [
+  takeEvery(GET_POSTS_BY_CATEGORY, getPostsByCategory),
+  takeEvery(UPVOTE_TO_POST, upVoteToPost),
+  takeEvery(DOWNVOTE_TO_POST, downVoteToPost),
+  takeLatest(ADD_POST, addPost),
+  takeLatest(DELETE_POST, deletePost),
+  takeLatest(GET_POST_BY_ID, getPostById),
+  takeLatest(EDIT_POST_BY_ID, editPostById),
+]
 
 export default function* rootSaga() {
   yield all([
-    fork(watchGetAllCategories),
-    fork(watchGetPostsByCategory),
-    fork(watchUpVoteToPost),
-    fork(watchDownVoteToPost),
-    fork(watchAddPost),
-    fork(watchDeletePost),
-    fork(watchGetPostsById),
-    fork(watchEditPostById)
+    ...categorySaga,
+    ...postSaga
   ])
 }
