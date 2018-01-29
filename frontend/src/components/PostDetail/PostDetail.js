@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import CategoryBadge from '../PostAsset/CategoryBadge/CategoryBadge'
 import VoteBadge from '../PostAsset/VoteBadge/VoteBadge'
+import EditBadge from '../PostAsset/EditBadge/EditBadge'
 
 class PostDetail extends Component {
   render () {
     const { post } = this.props
     return (
       <div>
-        <h2>{post.title}</h2>
+        <div className="d-flex align-items-start">
+          <h2 className="mr-2">{post.title}</h2>
+          <EditBadge link={`/posts/edit/${post.id}`} />
+        </div>
         <div>
           <small className="text-muted">
             Posted by <strong>{post.author}</strong>
