@@ -13,6 +13,18 @@ class PostForm extends Component {
     redirect: false
   }
 
+  componentDidMount() {
+    const { postType, post } = this.props
+    if (postType === "edit") {
+      this.setState({
+        category: post.category,
+        title: post.title,
+        content: post.body,
+        author: post.author
+      })
+    }
+  }
+
   handleChange = (e, key) => {
     this.setState({
       [key]: e.target.value
@@ -21,25 +33,43 @@ class PostForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const post = {
-      category: this.state.category,
-      title: this.state.title,
-      body: this.state.content,
-      author: this.state.author
+    if (this.props.postType === "new") {
+      const post = {
+        category: this.state.category,
+        title: this.state.title,
+        body: this.state.content,
+        author: this.state.author
+      }
+      this.props.addPost(post)
+    } else if (this.props.postType === "edit") {
+      const post = {
+        id: this.props.post.id,
+        title: this.state.title,
+        body: this.state.content,
+      }
+      this.props.editPost(post)
     }
-    this.props.addPost(post)
     this.setState({ redirect: true })
   }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/" />
+    const { postType } = this.props
+
+    let { categories } = this.props
+    let disabled = false
+    if (postType === "new") {
+      if (this.state.redirect) {
+        return <Redirect to="/" />
+      }
+    } else {
+      if (this.state.redirect) {
+        return <Redirect to={`/post/${this.props.post.id}`} />
+      }
+      const {category} = this.props.post
+      categories = [category]
+      disabled = true
     }
-    const { categories } = this.props
-    if (categories.length === 0) {
-      return <div />
-    }
-      return (
+    return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <RadioForm
@@ -64,7 +94,8 @@ class PostForm extends Component {
             id="author"
             value={this.state.author}
             handleChange={this.handleChange}
-            required={true}
+            required={!disabled}
+            disabled={disabled}
           />
           <div className="mt-5">
             <button type="submit" className="btn btn-lg btn-primary btn-block">

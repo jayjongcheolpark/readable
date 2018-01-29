@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-const InputText = ({ id, value, handleChange, required }) => {
+const InputText = ({ id, value, handleChange, required, disabled }) => {
   return (
     <div className="form-group">
       <label htmlFor={id}>{_.capitalize(id)}</label>
@@ -11,6 +11,7 @@ const InputText = ({ id, value, handleChange, required }) => {
         id={id}
         value={value}
         required={required}
+        disabled={disabled}
         onChange={e => handleChange(e, id)}
         placeholder={`Enter ${_.capitalize(id)}`}
       />

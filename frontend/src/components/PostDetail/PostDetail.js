@@ -10,7 +10,7 @@ class PostDetail extends Component {
       <div>
         <div className="d-flex align-items-start">
           <h2 className="mr-2">{post.title}</h2>
-          <EditBadge link={`/posts/edit/${post.id}`} />
+          <EditBadge link={`/post/edit/${post.id}`} />
         </div>
         <div>
           <small className="text-muted">
