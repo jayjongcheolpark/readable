@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ReactLoading from 'react-loading'
 import PostForm from '../components/PostForm/PostForm'
 import Header from '../components/Header/Header'
-import { getAllCategories, addPost, getPostById } from '../redux/actions'
+import { getAllCategories, addPost, getPostById, editPostById } from '../redux/actions'
 
 class FormView extends Component {
 
@@ -20,7 +20,7 @@ class FormView extends Component {
   }
 
   editPostHandler = ({ id, title, body }) => {
-    console.log(id, title, body)
+    this.props.editPostById({ id, title, body })
   }
 
   render () {
@@ -65,5 +65,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps, { getAllCategories, addPost, getPostById }
+  mapStateToProps, { getAllCategories, addPost, getPostById, editPostById }
 )(FormView)

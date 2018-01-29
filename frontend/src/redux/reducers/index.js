@@ -7,6 +7,7 @@ import {
   ADD_POST_SUCCESS,
   DELETE_POST_SUCCESS,
   GET_POST_BY_ID_SUCCESS,
+  EDIT_POST_BY_ID_SUCCESS,
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) => {
@@ -42,6 +43,14 @@ const postReducer = (state = [], action) => {
           return post.id !== action.post.id
         })
         return [ ...rest ]
+      case EDIT_POST_BY_ID_SUCCESS:
+        const copyState = state.map(post => {
+          if (post.id === action.post.id) {
+            return action.post
+          }
+          return post
+        })
+        return [...copyState]
       default:
         return state
   }

@@ -54,3 +54,11 @@ export async function getPostById(id) {
   return res.data
 }
 
+export async function editPostById({ id, title, body }) {
+  const res = await axios.put(`/posts/${id}`, {
+    title, body
+  }, { headers })
+
+  return res.data
+}
+
