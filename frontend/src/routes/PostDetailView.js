@@ -7,11 +7,13 @@ import PostDetail from '../components/PostDetail/PostDetail'
 import { getPostById, getCommentsById } from '../redux/actions'
 
 class PostDetailView extends Component {
+
   componentDidMount() {
     const { id } = this.props.match.params
-    this.props.getPostById(id)
     this.props.getCommentsById(id)
+    this.props.getPostById(id)
   }
+
   render () {
     return (
       <div>
@@ -24,7 +26,7 @@ class PostDetailView extends Component {
                 height="64px" width="64px"
               />
             ) : (
-              <PostDetail post={this.props.post} />
+              <PostDetail post={this.props.post} comments={this.props.comments} />
             )
           }
         </div>
@@ -34,7 +36,8 @@ class PostDetailView extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  post: state.post
+  post: state.post,
+  comments: state.comments
 })
 
 export default connect(mapStateToProps, { getPostById, getCommentsById })(PostDetailView)

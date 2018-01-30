@@ -100,7 +100,6 @@ function* editPostById(action) {
 
 function* getAllCommentsById(action) {
   const comments = yield call(API.getAllCommentsById, action.id)
-  console.log(comments)
   yield put({
     type: GET_ALL_COMMENTS_BY_ID_SUCCESS,
     comments

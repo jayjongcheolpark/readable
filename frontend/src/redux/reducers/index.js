@@ -8,6 +8,7 @@ import {
   DELETE_POST_SUCCESS,
   GET_POST_BY_ID_SUCCESS,
   EDIT_POST_BY_ID_SUCCESS,
+  GET_ALL_COMMENTS_BY_ID_SUCCESS,
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) => {
@@ -22,7 +23,7 @@ const categoryReducer = (state = [], action) => {
       return state
   }
 }
-const postReducer = (state = [], action) => {
+const postsReducer = (state = [], action) => {
   switch (action.type) {
       case GET_POSTS_BY_CATEGORY_SUCCESS:
         const resetState = state.filter(post => post.category !== action.category)
@@ -56,7 +57,7 @@ const postReducer = (state = [], action) => {
   }
 }
 
-const postDetailReducer = (state = {}, action) => {
+const postReducer = (state = {}, action) => {
   switch (action.type) {
       case GET_POST_BY_ID_SUCCESS:
         return { ...action.post }
@@ -65,8 +66,18 @@ const postDetailReducer = (state = {}, action) => {
   }
 }
 
+const commentsReducer = (state = [], action) => {
+  switch (action.type) {
+      case GET_ALL_COMMENTS_BY_ID_SUCCESS:
+        return [ ...action.comments ]
+      default:
+        return state
+  }
+}
+
 export default combineReducers({
   categories: categoryReducer,
-  posts: postReducer,
-  post: postDetailReducer
+  posts: postsReducer,
+  post: postReducer,
+  comments: commentsReducer
 })
