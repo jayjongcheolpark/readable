@@ -22,7 +22,9 @@ import {
   GET_POST_BY_ID,
   GET_POST_BY_ID_SUCCESS,
   EDIT_POST_BY_ID,
-  EDIT_POST_BY_ID_SUCCESS
+  EDIT_POST_BY_ID_SUCCESS,
+  GET_ALL_COMMENTS_BY_ID,
+  GET_ALL_COMMENTS_BY_ID_SUCCESS
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -96,9 +98,19 @@ function* editPostById(action) {
   })
 }
 
+function* getAllCommentsById(action) {
+  const comments = yield call(API.getAllCommentsById, action.id)
+  console.log(comments)
+  yield put({
+    type: GET_ALL_COMMENTS_BY_ID_SUCCESS,
+    comments
+  })
+}
+
 const categorySaga = [
   takeLatest(GET_ALL_CATEGORIES, getAllCategories)
 ]
+
 const postSaga = [
   takeEvery(GET_POSTS_BY_CATEGORY, getPostsByCategory),
   takeEvery(UPVOTE_TO_POST, upVoteToPost),
@@ -106,12 +118,17 @@ const postSaga = [
   takeLatest(ADD_POST, addPost),
   takeLatest(DELETE_POST, deletePost),
   takeLatest(GET_POST_BY_ID, getPostById),
-  takeLatest(EDIT_POST_BY_ID, editPostById),
+  takeLatest(EDIT_POST_BY_ID, editPostById)
+]
+
+const commentSaga = [
+  takeLatest(GET_ALL_COMMENTS_BY_ID, getAllCommentsById)
 ]
 
 export default function* rootSaga() {
   yield all([
     ...categorySaga,
-    ...postSaga
+    ...postSaga,
+    ...commentSaga
   ])
 }

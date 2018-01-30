@@ -62,3 +62,11 @@ export async function editPostById({ id, title, body }) {
   return res.data
 }
 
+export async function getAllCommentsById(id) {
+  const res = await axios.get(`/posts/${id}/comments`, {
+    headers
+  })
+
+  return res.data
+}
+

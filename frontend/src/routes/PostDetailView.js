@@ -4,11 +4,13 @@ import ReactLoading from 'react-loading'
 import _ from 'lodash'
 import Header from '../components/Header/Header'
 import PostDetail from '../components/PostDetail/PostDetail'
-import { getPostById } from '../redux/actions'
+import { getPostById, getCommentsById } from '../redux/actions'
 
 class PostDetailView extends Component {
   componentDidMount() {
-    this.props.getPostById(this.props.match.params.id)
+    const { id } = this.props.match.params
+    this.props.getPostById(id)
+    this.props.getCommentsById(id)
   }
   render () {
     return (
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => ({
   post: state.post
 })
 
-export default connect(mapStateToProps, { getPostById })(PostDetailView)
+export default connect(mapStateToProps, { getPostById, getCommentsById })(PostDetailView)
