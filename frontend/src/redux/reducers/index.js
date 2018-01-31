@@ -71,7 +71,7 @@ const commentsReducer = (state = [], action) => {
       case GET_ALL_COMMENTS_BY_ID_SUCCESS:
         return [ ...action.comments ]
       default:
-        return state
+        return []
   }
 }
 
