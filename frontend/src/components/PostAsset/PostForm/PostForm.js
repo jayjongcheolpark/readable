@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import RadioForm from '../FormAsset/RadioForm/RadioForm'
-import InputText from '../FormAsset/InputText/InputText'
-import InputArea from '../FormAsset/InputArea/InputArea'
+import RadioForm from '../../FormAsset/RadioForm/RadioForm'
+import InputText from '../../FormAsset/InputText/InputText'
+import InputArea from '../../FormAsset/InputArea/InputArea'
 
 class PostForm extends Component {
   state = {

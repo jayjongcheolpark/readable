@@ -6,11 +6,11 @@ import {
   upVoteToPost,
   downVoteToPost,
   deletePost
-} from '../../redux/actions'
-import IconButton from '../PostAsset/IconButton/IconButton'
-import CloseButton from '../PostAsset/CloseButton/CloseButton'
-import VoteBadge from '../PostAsset/VoteBadge/VoteBadge'
-import CategoryBadge from '../PostAsset/CategoryBadge/CategoryBadge'
+} from '../../../redux/actions'
+import IconButton from '../IconButton/IconButton'
+import CloseButton from '../CloseButton/CloseButton'
+import VoteBadge from '../VoteBadge/VoteBadge'
+import CategoryBadge from '../CategoryBadge/CategoryBadge'
 
 class Post extends Component {
   state = {

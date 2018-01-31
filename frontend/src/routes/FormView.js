@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactLoading from 'react-loading'
-import PostForm from '../components/PostForm/PostForm'
+import PostForm from '../components/PostAsset/PostForm/PostForm'
 import Header from '../components/Header/Header'
 import { getAllCategories, addPost, getPostById, editPostById } from '../redux/actions'
 

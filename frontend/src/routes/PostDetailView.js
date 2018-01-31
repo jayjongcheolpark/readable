@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 import Header from '../components/Header/Header'
-import PostDetail from '../components/PostDetail/PostDetail'
+import PostDetail from '../components/PostAsset/PostDetail/PostDetail'
 import { getPostById, getCommentsById } from '../redux/actions'
 
 class PostDetailView extends Component {
@@ -15,20 +15,15 @@ class PostDetailView extends Component {
   }
 
   render () {
+    const renderPostDetail = _.isEmpty(this.props.post) ?
+      <ReactLoading type="spin" color="gray" height="64px" width="64px" /> :
+      <PostDetail post={this.props.post} comments={this.props.comments} />
+
     return (
       <div>
         <Header />
         <div className="container mt-3">
-          {
-            _.isEmpty(this.props.post) ? (
-              <ReactLoading
-                type="spin" color="gray"
-                height="64px" width="64px"
-              />
-            ) : (
-              <PostDetail post={this.props.post} comments={this.props.comments} />
-            )
-          }
+          { renderPostDetail }
         </div>
 
       </div>

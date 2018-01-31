@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Filter from '../components/FIlter/Filter'
 import { getAllCategories, getPostsByCategory } from '../redux/actions'
-import PostList from '../components/PostList/PostList'
+import PostList from '../components/PostAsset/PostList/PostList'
 import Header from '../components/Header/Header'
 
 class Main extends Component {

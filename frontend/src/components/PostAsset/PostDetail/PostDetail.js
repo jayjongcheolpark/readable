@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import CategoryBadge from '../PostAsset/CategoryBadge/CategoryBadge'
-import VoteBadge from '../PostAsset/VoteBadge/VoteBadge'
-import EditBadge from '../PostAsset/EditBadge/EditBadge'
+import CategoryBadge from '../CategoryBadge/CategoryBadge'
+import VoteBadge from '../VoteBadge/VoteBadge'
+import EditBadge from '../EditBadge/EditBadge'
 
 class PostDetail extends Component {
   render () {
