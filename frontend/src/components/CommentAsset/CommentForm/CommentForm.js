@@ -13,6 +13,11 @@ class CommentForm extends Component {
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.addComment()
+  }
+
   render () {
     return (
       <div>

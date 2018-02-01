@@ -16,6 +16,10 @@ class PostDetailView extends Component {
     this.props.getPostById(id)
   }
 
+  addCommentHandler = (comment) => {
+
+  }
+
   render () {
 
     const renderPostDetail = _.isEmpty(this.props.post) ?
@@ -34,7 +38,7 @@ class PostDetailView extends Component {
           </div>
           <hr />
           <div className="my-5">
-            <CommentForm />
+            <CommentForm addComment={this.addCommentHandler} />
           </div>
           <hr />
           <div className="mt-5">
