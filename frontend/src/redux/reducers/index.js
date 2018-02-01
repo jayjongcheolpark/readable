@@ -9,6 +9,7 @@ import {
   GET_POST_BY_ID_SUCCESS,
   EDIT_POST_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID_SUCCESS,
+  GET_ALL_COMMENTS_BY_ID_RESET,
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) => {
@@ -70,8 +71,10 @@ const commentsReducer = (state = [], action) => {
   switch (action.type) {
       case GET_ALL_COMMENTS_BY_ID_SUCCESS:
         return [ ...action.comments ]
-      default:
+      case GET_ALL_COMMENTS_BY_ID_RESET:
         return []
+      default:
+        return state
   }
 }
 

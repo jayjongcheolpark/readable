@@ -7,7 +7,7 @@ import rootSaga from './sagas'
 const sagaMiddleware = createSagaMiddleware()
 
 const middlewares = []
-if (process.env.NODE_ENV === `production`) {
+if (process.env.NODE_ENV === `dev`) {
   const { logger } = require(`redux-logger`);
 
   middlewares.push(logger);

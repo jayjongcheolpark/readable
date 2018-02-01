@@ -24,7 +24,8 @@ import {
   EDIT_POST_BY_ID,
   EDIT_POST_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID,
-  GET_ALL_COMMENTS_BY_ID_SUCCESS
+  GET_ALL_COMMENTS_BY_ID_SUCCESS,
+  GET_ALL_COMMENTS_BY_ID_RESET
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -100,10 +101,16 @@ function* editPostById(action) {
 
 function* getAllCommentsById(action) {
   const comments = yield call(API.getAllCommentsById, action.id)
-  yield put({
-    type: GET_ALL_COMMENTS_BY_ID_SUCCESS,
-    comments
-  })
+  if (comments.length > 0) {
+    yield put({
+      type: GET_ALL_COMMENTS_BY_ID_SUCCESS,
+      comments
+    })
+  } else {
+    yield put({
+      type: GET_ALL_COMMENTS_BY_ID_RESET
+    })
+  }
 }
 
 const categorySaga = [

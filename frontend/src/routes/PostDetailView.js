@@ -16,22 +16,21 @@ class PostDetailView extends Component {
   }
 
   render () {
+
     const renderPostDetail = _.isEmpty(this.props.post) ?
       <ReactLoading type="spin" color="gray" height="64px" width="64px" /> :
       <PostDetail post={this.props.post} comments={this.props.comments} />
 
     const renderCommentList = !_.isEmpty(this.props.comments) &&
       <CommentList comments={this.props.comments} />
-    return (
+
+      return (
       <div>
         <Header />
         <div className="container mt-3">
           { renderPostDetail }
-          <div>
-            { renderCommentList }
-          </div>
+          { renderCommentList }
         </div>
-
       </div>
     )
   }

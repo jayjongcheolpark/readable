@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import Comment from '../Comment/Comment'
 
 class CommentList extends Component {
   render () {
-      console.log(this.props.comments)
+    const renderComments = this.props
+      .comments.map(comment =>
+        <Comment key={comment.id} comment={comment} />
+      )
     return (
-      <div>
-
-      </div>
+      <ul className="list-group">
+        {renderComments}
+      </ul>
     )
   }
 }
