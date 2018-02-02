@@ -3,7 +3,7 @@ import InputText from '../../FormAsset/InputText/InputText'
 
 class CommentForm extends Component {
   state = {
-    body: '',
+    comment: '',
     author: ''
   }
 
@@ -13,32 +13,39 @@ class CommentForm extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
-    this.props.addComment()
+    const comment = {
+      body: this.state.comment,
+      author: this.state.author,
+      parentId: this.props.parentId
+    }
+    this.props.addComment(comment)
   }
 
-  render () {
+  render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <InputText
           id="comment"
-          value={this.state.body}
+          value={this.state.comment}
           required={true}
-          onChange={this.handleChange}
+          disabled={false}
+          handleChange={this.handleChange}
         />
         <InputText
           id="author"
           value={this.state.author}
           required={true}
-          onChange={this.handleChange}
+          disabled={false}
+          handleChange={this.handleChange}
         />
         <div className="mt-3">
           <button type="submit" className="btn btn-lg btn-primary btn-block">
             Add Comment
           </button>
-      </div>
-      </div>
+        </div>
+      </form>
     )
   }
 }

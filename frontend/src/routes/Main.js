@@ -35,7 +35,7 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <div className="container">
+        <div className="container pb-5">
           <Filter
               selectFilter={this.selectFilter}
               categories={this.props.categories}

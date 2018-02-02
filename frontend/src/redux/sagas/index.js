@@ -30,7 +30,8 @@ import {
   GET_ALL_COMMENTS_BY_ID,
   GET_ALL_COMMENTS_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID_RESET,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  ADD_COMMENT
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -149,6 +150,21 @@ function* deleteComment(action) {
   }
 }
 
+function* addComment(action) {
+  const comment = yield call(API.addComment, action.comment)
+  const comments = yield call(API.getAllCommentsById, comment.parentId)
+  if (comments.length > 0) {
+    yield put({
+      type: GET_ALL_COMMENTS_BY_ID_SUCCESS,
+      comments
+    })
+  } else {
+    yield put({
+      type: GET_ALL_COMMENTS_BY_ID_RESET
+    })
+  }
+}
+
 const categorySaga = [
   takeLatest(GET_ALL_CATEGORIES, getAllCategories)
 ]
@@ -167,7 +183,8 @@ const commentSaga = [
   takeLatest(GET_ALL_COMMENTS_BY_ID, getAllCommentsById),
   takeEvery(UPVOTE_TO_COMMENT, upVoteToComment),
   takeEvery(DOWNVOTE_TO_COMMENT, downVoteToComment),
-  takeLatest(DELETE_COMMENT, deleteComment)
+  takeLatest(DELETE_COMMENT, deleteComment),
+  takeLatest(ADD_COMMENT, addComment)
 ]
 
 export default function* rootSaga() {

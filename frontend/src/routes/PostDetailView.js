@@ -6,7 +6,7 @@ import Header from '../components/Header/Header'
 import PostDetail from '../components/PostAsset/PostDetail/PostDetail'
 import CommentList from '../components/CommentAsset/CommentList/CommentList'
 import CommentForm from '../components/CommentAsset/CommentForm/CommentForm'
-import { getPostById, getCommentsById } from '../redux/actions'
+import { getPostById, getCommentsById, addComment } from '../redux/actions'
 
 class PostDetailView extends Component {
 
@@ -17,7 +17,8 @@ class PostDetailView extends Component {
   }
 
   addCommentHandler = (comment) => {
-
+    console.log(comment)
+    this.props.addComment(comment)
   }
 
   render () {
@@ -32,13 +33,16 @@ class PostDetailView extends Component {
       return (
       <div>
         <Header />
-        <div className="container mt-3">
+        <div className="container mt-3 pb-5">
           <div className="my-5">
             { renderPostDetail }
           </div>
           <hr />
           <div className="my-5">
-            <CommentForm addComment={this.addCommentHandler} />
+            <CommentForm
+              parentId={this.props.match.params.id}
+              addComment={this.addCommentHandler}
+            />
           </div>
           <hr />
           <div className="mt-5">
@@ -54,4 +58,4 @@ const mapStateToProps = (state) => ({
   comments: state.comments
 })
 
-export default connect(mapStateToProps, { getPostById, getCommentsById })(PostDetailView)
+export default connect(mapStateToProps, { getPostById, getCommentsById, addComment })(PostDetailView)
