@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Comment from '../Comment/Comment'
-import { upVoteToComment, downVoteToComment } from '../../../redux/actions'
+import { upVoteToComment, downVoteToComment, deleteComment } from '../../../redux/actions'
 
 class CommentList extends Component {
   upVote = (id) => {
@@ -9,6 +9,9 @@ class CommentList extends Component {
   }
   downVote = (id) => {
     this.props.downVoteToComment(id)
+  }
+  deleteComment = (id) => {
+    this.props.deleteComment(id)
   }
   render () {
     const renderComments = this.props
@@ -18,6 +21,7 @@ class CommentList extends Component {
           comment={comment}
           upVote={this.upVote}
           downVote={this.downVote}
+          deleteComment={this.deleteComment}
         />
       )
     return (
@@ -28,4 +32,4 @@ class CommentList extends Component {
   }
 }
 
-export default connect(null, { upVoteToComment, downVoteToComment })(CommentList)
+export default connect(null, { upVoteToComment, downVoteToComment, deleteComment })(CommentList)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import VoteBadge from '../../PostAsset/VoteBadge/VoteBadge'
 import IconButton from '../../PostAsset/IconButton/IconButton'
+import CloseButton from '../../PostAsset/CloseButton/CloseButton'
 
 class Comment extends Component {
   upVote = () => {
@@ -9,11 +10,20 @@ class Comment extends Component {
   downVote = () => {
     this.props.downVote(this.props.comment.id)
   }
+  deleteComment = () => {
+    this.props.deleteComment(this.props.comment.id)
+  }
   render() {
     const {comment} = this.props
     return (
       <li className="list-group-item list-group-item-warning">
+        <div className="d-flex justify-content-between align-items-start">
         <div>{comment.body}</div>
+        <CloseButton
+          closeStyle="text-muted"
+          handleDelete={this.deleteComment}
+        />
+        </div>
         <div>
           <small className="text-muted">commented by {comment.author}</small>
           {' / '}

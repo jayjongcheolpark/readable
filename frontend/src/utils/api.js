@@ -86,3 +86,9 @@ export async function getAllCommentsById(id) {
   return res.data
 }
 
+export async function deleteComment(id) {
+  const res = await axios.delete(`/comments/${id}`, { headers })
+
+  return res.data
+}
+

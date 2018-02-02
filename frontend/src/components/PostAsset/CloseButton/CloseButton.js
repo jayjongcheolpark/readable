@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CloseButton = ({ closeStyle, toggleHover, handleDeletePost }) => {
+const CloseButton = ({ closeStyle, toggleHover, handleDelete }) => {
   return (
     <button
       type="button"
@@ -8,7 +8,7 @@ const CloseButton = ({ closeStyle, toggleHover, handleDeletePost }) => {
       aria-label="Close"
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}
-      onClick={handleDeletePost}
+      onClick={handleDelete}
     >
       <span aria-hidden="true">&times;</span>
     </button>

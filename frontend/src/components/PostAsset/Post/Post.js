@@ -49,7 +49,7 @@ class Post extends Component {
           <CloseButton
             closeStyle={closeStyle}
             toggleHover={this.toggleHover}
-            handleDeletePost={this.handleDeletePost}
+            handleDelete={this.handleDeletePost}
           />
         </div>
         <div>
