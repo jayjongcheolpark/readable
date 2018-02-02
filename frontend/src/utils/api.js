@@ -92,3 +92,12 @@ export async function deleteComment(id) {
   return res.data
 }
 
+export async function addComment({body, author, parentId}) {
+  const id = uuidV1()
+  const timestamp = Date.now()
+  const res = await axios.post(`/comments`, {
+    id, timestamp, body, author, parentId
+  }, { headers })
+
+  return res.data
+}
