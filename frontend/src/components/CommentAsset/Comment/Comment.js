@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import VoteBadge from '../../PostAsset/VoteBadge/VoteBadge'
 import IconButton from '../../PostAsset/IconButton/IconButton'
 
@@ -20,12 +20,12 @@ const Comment = ({ comment }) => {
           <IconButton
             buttonClass="btn btn-outline-primary mr-3"
             iconClass="fa fa-thumbs-o-up"
-            clickHandler={() => comment.voteScore}
+            clickHandler={() => this.props.upVote(comment.id)}
           />
           <IconButton
             buttonClass="btn btn-outline-secondary"
             iconClass="fa fa-thumbs-o-down"
-            clickHandler={() => comment.voteScore}
+            clickHandler={() => this.props.downVote(comment.id)}
           />
       </div>
       </div>
