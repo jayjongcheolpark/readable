@@ -15,6 +15,10 @@ import {
   UPVOTE_TO_POST_SUCCESS,
   DOWNVOTE_TO_POST,
   DOWNVOTE_TO_POST_SUCCESS,
+  UPVOTE_TO_COMMENT,
+  UPVOTE_TO_COMMENT_SUCCESS,
+  DOWNVOTE_TO_COMMENT,
+  DOWNVOTE_TO_COMMENT_SUCCESS,
   ADD_POST,
   ADD_POST_SUCCESS,
   DELETE_POST,
@@ -64,6 +68,22 @@ function* downVoteToPost(action) {
   yield put({
     type: DOWNVOTE_TO_POST_SUCCESS,
     post
+  })
+}
+
+function* upVoteToComment(action) {
+  const comment = yield call(API.upVoteToComment, action.id)
+  yield put({
+    type: UPVOTE_TO_COMMENT_SUCCESS,
+    comment
+  })
+}
+
+function* downVoteToComment(action) {
+  const comment = yield call(API.downVoteToComment, action.id)
+  yield put({
+    type: DOWNVOTE_TO_COMMENT_SUCCESS,
+    comment
   })
 }
 
@@ -128,7 +148,9 @@ const postSaga = [
 ]
 
 const commentSaga = [
-  takeLatest(GET_ALL_COMMENTS_BY_ID, getAllCommentsById)
+  takeLatest(GET_ALL_COMMENTS_BY_ID, getAllCommentsById),
+  takeEvery(UPVOTE_TO_COMMENT, upVoteToComment),
+  takeEvery(DOWNVOTE_TO_COMMENT, downVoteToComment)
 ]
 
 export default function* rootSaga() {

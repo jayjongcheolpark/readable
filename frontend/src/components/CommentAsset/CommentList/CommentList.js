@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Comment from '../Comment/Comment'
+import { upVoteToComment, downVoteToComment } from '../../../redux/actions'
 
 class CommentList extends Component {
   upVote = (id) => {
-
+    this.props.upVoteToComment(id)
   }
   downVote = (id) => {
-
+    this.props.downVoteToComment(id)
   }
   render () {
     const renderComments = this.props
@@ -26,4 +28,4 @@ class CommentList extends Component {
   }
 }
 
-export default CommentList
+export default connect(null, { upVoteToComment, downVoteToComment })(CommentList)

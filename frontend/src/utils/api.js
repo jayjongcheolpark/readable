@@ -32,6 +32,22 @@ export async function downVoteToPost(id) {
   return res.data
 }
 
+export async function upVoteToComment(id) {
+  const res = await axios.post(`/comments/${id}`, {
+    option: "upVote"
+  }, { headers })
+
+  return res.data
+}
+
+export async function downVoteToComment(id) {
+  const res = await axios.post(`/comments/${id}`, {
+    option: "downVote"
+  }, { headers })
+
+  return res.data
+}
+
 export async function addPost({ category, title, body, author }) {
   const id = uuidV1()
   const timestamp = Date.now()

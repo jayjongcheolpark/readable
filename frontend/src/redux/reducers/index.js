@@ -4,6 +4,8 @@ import {
   GET_POSTS_BY_CATEGORY_SUCCESS,
   UPVOTE_TO_POST_SUCCESS,
   DOWNVOTE_TO_POST_SUCCESS,
+  UPVOTE_TO_COMMENT_SUCCESS,
+  DOWNVOTE_TO_COMMENT_SUCCESS,
   ADD_POST_SUCCESS,
   DELETE_POST_SUCCESS,
   GET_POST_BY_ID_SUCCESS,
@@ -73,6 +75,15 @@ const commentsReducer = (state = [], action) => {
         return [ ...action.comments ]
       case GET_ALL_COMMENTS_BY_ID_RESET:
         return []
+      case UPVOTE_TO_COMMENT_SUCCESS:
+      case DOWNVOTE_TO_COMMENT_SUCCESS:
+        const newState = state.map(comment => {
+          if (comment.id === action.comment.id) {
+            return action.comment
+          }
+          return comment
+        })
+        return [ ...newState ]
       default:
         return state
   }
