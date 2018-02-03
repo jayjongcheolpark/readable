@@ -86,4 +86,6 @@ class Post extends Component {
   }
 }
 
-export default connect(null, { upVoteToPost, downVoteToPost, deletePost })(Post)
+export default connect(null, {
+  upVoteToPost, downVoteToPost, deletePost
+})(Post)

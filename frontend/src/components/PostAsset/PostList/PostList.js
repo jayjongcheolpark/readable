@@ -1,23 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Post from '../Post/Post'
 
-class PostList extends Component {
-  render () {
-    let posts
-    if (this.props.filter === 'all') {
-      posts = this.props.posts
-    } else {
-      posts = this.props.posts
-            .filter(post => post.category === this.props.filter)
-    }
+const PostList = ({ posts, filter }) => {
+
+    let allPosts = (filter === 'all') ? posts : posts.filter(post => post.category === filter)
+
+    const renderPostList = allPosts.map(post => <Post key={post.id} post={post} />)
+
     return (
       <ul className="list-group">
-      {
-        posts.map(post => <Post key={post.id} post={post} />)
-      }
+        {renderPostList}
       </ul>
     )
-  }
 }
 
 export default PostList
