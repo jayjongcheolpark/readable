@@ -21,6 +21,10 @@ class CommentForm extends Component {
       parentId: this.props.parentId
     }
     this.props.addComment(comment)
+    this.setState({
+      comment: '',
+      author: ''
+    })
   }
 
   render() {
