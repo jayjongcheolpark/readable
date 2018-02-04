@@ -44,7 +44,7 @@ class CommentForm extends Component {
           disabled={false}
           handleChange={this.handleChange}
         />
-        <div className="mt-3">
+        <div className="mt-4">
           <button type="submit" className="btn btn-lg btn-primary btn-block">
             Add Comment
           </button>
