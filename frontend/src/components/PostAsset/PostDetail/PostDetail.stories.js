@@ -1,4 +1,5 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router-dom'
 
 import { storiesOf, addDecorator } from '@storybook/react'
 import backgrounds from '@storybook/addon-backgrounds'
@@ -34,6 +35,9 @@ storiesOf('PostDetail', module)
     { name: "twitter", value: "#00aced" },
     { name: "facebook", value: "#3b5998" },
   ]))
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
   .add('vote: less than 10', () =>
     <PostDetail
       post={postVote9}

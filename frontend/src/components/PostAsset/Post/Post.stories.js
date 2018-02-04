@@ -3,9 +3,10 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { MemoryRouter } from 'react-router-dom'
 
-import reducers from '../../redux/reducers'
-import rootSaga from '../../redux/sagas'
+import reducers from '../../../redux/reducers'
+import rootSaga from '../../../redux/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -19,6 +20,7 @@ import { storiesOf, addDecorator } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import backgrounds from '@storybook/addon-backgrounds'
 import Post from './Post'
+import './Post.css'
 
 
 const defaultData = {
@@ -42,7 +44,9 @@ storiesOf('Post', module)
   ]))
   .addDecorator((getStory) => (
     <Provider store={store}>
+      <MemoryRouter initialEntries={['/']}>
       { getStory() }
+      </MemoryRouter>
     </Provider>
  ))
   .add('default', () =>

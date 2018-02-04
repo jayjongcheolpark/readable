@@ -11,6 +11,7 @@ import IconButton from '../IconButton/IconButton'
 import CloseButton from '../CloseButton/CloseButton'
 import VoteBadge from '../VoteBadge/VoteBadge'
 import CategoryBadge from '../CategoryBadge/CategoryBadge'
+import './Post.css'
 
 class Post extends Component {
   state = {
@@ -43,7 +44,7 @@ class Post extends Component {
     const date = new Date(post.timestamp)
 
     return (
-      <li className="list-group-item">
+      <li className="list-group-item post">
         <div className="d-flex justify-content-between align-items-start">
           <Link className="h2" to={`/post/${post.id}`}>{post.title}</Link>
           <CloseButton

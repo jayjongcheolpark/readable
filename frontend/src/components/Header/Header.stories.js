@@ -14,5 +14,5 @@ storiesOf('Header', module)
   ]))
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
-))
+  ))
   .add('default', () => <Header />)

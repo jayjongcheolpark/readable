@@ -1,5 +1,5 @@
-.posts a:hover,
-.posts a:active {
+.post a:hover,
+.post a:active {
   background-image: -webkit-gradient(
     linear,
     left top,

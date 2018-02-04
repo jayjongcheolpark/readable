@@ -1,11 +1,12 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router-dom'
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-import reducers from '../../redux/reducers'
-import rootSaga from '../../redux/sagas'
+import reducers from '../../../redux/reducers'
+import rootSaga from '../../../redux/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -53,11 +54,14 @@ storiesOf('PostList', module)
     { name: "twitter", value: "#00aced" },
     { name: "facebook", value: "#3b5998" },
   ]))
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
   .addDecorator((getStory) => (
     <Provider store={store}>
       { getStory() }
     </Provider>
- ))
+  ))
   .add('default', () =>
     <PostList
       posts={defaultData}

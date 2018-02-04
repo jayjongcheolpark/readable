@@ -5,7 +5,6 @@ import Filter from '../components/FIlter/Filter'
 import { getAllCategories, getPostsByCategory } from '../redux/actions'
 import PostList from '../components/PostAsset/PostList/PostList'
 import Header from '../components/Header/Header'
-import './Main.css'
 
 class Main extends Component {
   state = {
@@ -48,7 +47,7 @@ class Main extends Component {
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
           </div>
-            <div className="mt-4 posts">
+            <div className="mt-4">
               <PostList
                 posts={this.props.posts}
                 filter={this.state.filter}
