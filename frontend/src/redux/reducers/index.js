@@ -12,6 +12,7 @@ import {
   EDIT_POST_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID_RESET,
+  EDIT_COMMENT_SUCCESS,
 } from '../constants/actionTypes'
 
 const categoryReducer = (state = [], action) => {
@@ -84,6 +85,14 @@ const commentsReducer = (state = [], action) => {
           return comment
         })
         return [ ...newState ]
+      case EDIT_COMMENT_SUCCESS:
+        const newState2 = state.map(comment => {
+          if (comment.id === action.comment.id) {
+            return action.comment
+          }
+          return comment
+        })
+        return [ ...newState2 ]
       default:
         return state
   }

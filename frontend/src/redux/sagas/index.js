@@ -31,7 +31,9 @@ import {
   GET_ALL_COMMENTS_BY_ID_SUCCESS,
   GET_ALL_COMMENTS_BY_ID_RESET,
   DELETE_COMMENT,
-  ADD_COMMENT
+  ADD_COMMENT,
+  EDIT_COMMENT,
+  EDIT_COMMENT_SUCCESS
 } from '../constants/actionTypes'
 
 import * as API from '../../utils/api'
@@ -165,6 +167,14 @@ function* addComment(action) {
   }
 }
 
+function* editComment(action) {
+  const comment = yield call(API.editComment, action.comment)
+  yield put({
+    type: EDIT_COMMENT_SUCCESS,
+    comment
+  })
+}
+
 const categorySaga = [
   takeLatest(GET_ALL_CATEGORIES, getAllCategories)
 ]
@@ -184,7 +194,8 @@ const commentSaga = [
   takeEvery(UPVOTE_TO_COMMENT, upVoteToComment),
   takeEvery(DOWNVOTE_TO_COMMENT, downVoteToComment),
   takeLatest(DELETE_COMMENT, deleteComment),
-  takeLatest(ADD_COMMENT, addComment)
+  takeLatest(ADD_COMMENT, addComment),
+  takeLatest(EDIT_COMMENT, editComment)
 ]
 
 export default function* rootSaga() {

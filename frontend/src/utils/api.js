@@ -101,3 +101,12 @@ export async function addComment({body, author, parentId}) {
 
   return res.data
 }
+
+export async function editComment({id, body}) {
+  const timestamp = Date.now()
+  const res = await axios.put(`/comments/${id}`, {
+    body, timestamp
+  }, { headers })
+
+  return res.data
+}

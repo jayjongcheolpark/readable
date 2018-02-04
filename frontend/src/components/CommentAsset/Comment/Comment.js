@@ -20,7 +20,10 @@ class Comment extends Component {
   }
 
   editComment = (body) => {
-    console.log(body)
+    this.props.editComment({
+      id: this.props.comment.id,
+      body
+    })
     this.setState({ editMode: false })
   }
 

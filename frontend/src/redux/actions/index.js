@@ -11,7 +11,8 @@ import {
   EDIT_POST_BY_ID,
   GET_ALL_COMMENTS_BY_ID,
   DELETE_COMMENT,
-  ADD_COMMENT
+  ADD_COMMENT,
+  EDIT_COMMENT
 } from '../constants/actionTypes'
 
 export const getAllCategories = () => ({
@@ -75,5 +76,10 @@ export const deleteComment = (id) => ({
 
 export const addComment = (comment) => ({
   type: ADD_COMMENT,
+  comment
+})
+
+export const editComment = (comment) => ({
+  type: EDIT_COMMENT,
   comment
 })
