@@ -11,6 +11,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/:category" component={Main} />
           <Route exact path="/post/new" component={FormView} />
           <Route exact path="/post/:id" component={PostDetailView} />
           <Route exact path="/post/edit/:id" component={FormView} />
