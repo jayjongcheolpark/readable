@@ -54,6 +54,8 @@ To use redux and redux-saga is easier to manage state and asynchronous things, m
 #### Storybook
 Storybook is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
 
+![Storybook](https://thumbs.gfycat.com/AmusedLinedIndianskimmer-size_restricted.gif)
+
 Storybook is deployed on [https://jayjongcheolpark.github.io/readable/](https://jayjongcheolpark.github.io/readable/)
 
 #### Deployment
