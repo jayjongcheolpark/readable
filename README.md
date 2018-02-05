@@ -23,6 +23,8 @@ npm start
 
 ### Demo
 
+![Demo](https://user-images.githubusercontent.com/13275149/35788076-e0391a00-0a00-11e8-9337-973ad6ab9727.png)
+
 [https://reactnanodegree-readable.herokuapp.com/](https://reactnanodegree-readable.herokuapp.com/)
 
 ## Acknowledgments
