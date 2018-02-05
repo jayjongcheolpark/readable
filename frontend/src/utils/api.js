@@ -7,17 +7,17 @@ const headers = {
 }
 
 export async function getAllCategories() {
-  const res = await axios.get(`/categories`, { headers })
+  const res = await axios.get(`/api/categories`, { headers })
   return res.data.categories
 }
 
 export async function getPostsByCategory(category) {
-  const res = await axios.get(`/${category}/posts`, { headers })
+  const res = await axios.get(`/api/${category}/posts`, { headers })
   return res.data
 }
 
 export async function upVoteToPost(id) {
-  const res = await axios.post(`/posts/${id}`, {
+  const res = await axios.post(`/api/posts/${id}`, {
     option: "upVote"
   }, { headers })
 
@@ -25,7 +25,7 @@ export async function upVoteToPost(id) {
 }
 
 export async function downVoteToPost(id) {
-  const res = await axios.post(`/posts/${id}`, {
+  const res = await axios.post(`/api/posts/${id}`, {
     option: "downVote"
   }, { headers })
 
@@ -33,7 +33,7 @@ export async function downVoteToPost(id) {
 }
 
 export async function upVoteToComment(id) {
-  const res = await axios.post(`/comments/${id}`, {
+  const res = await axios.post(`/api/comments/${id}`, {
     option: "upVote"
   }, { headers })
 
@@ -41,7 +41,7 @@ export async function upVoteToComment(id) {
 }
 
 export async function downVoteToComment(id) {
-  const res = await axios.post(`/comments/${id}`, {
+  const res = await axios.post(`/api/comments/${id}`, {
     option: "downVote"
   }, { headers })
 
@@ -51,7 +51,7 @@ export async function downVoteToComment(id) {
 export async function addPost({ category, title, body, author }) {
   const id = uuidV1()
   const timestamp = Date.now()
-  const res = await axios.post(`/posts`, {
+  const res = await axios.post(`/api/posts`, {
     id, timestamp, title, body, author, category
   }, { headers })
 
@@ -59,19 +59,19 @@ export async function addPost({ category, title, body, author }) {
 }
 
 export async function deletePost(id) {
-  const res = await axios.delete(`/posts/${id}`, { headers })
+  const res = await axios.delete(`/api/posts/${id}`, { headers })
 
   return res.data
 }
 
 export async function getPostById(id) {
-  const res = await axios.get(`/posts/${id}`, { headers })
+  const res = await axios.get(`/api/posts/${id}`, { headers })
 
   return res.data
 }
 
 export async function editPostById({ id, title, body }) {
-  const res = await axios.put(`/posts/${id}`, {
+  const res = await axios.put(`/api/posts/${id}`, {
     title, body
   }, { headers })
 
@@ -79,7 +79,7 @@ export async function editPostById({ id, title, body }) {
 }
 
 export async function getAllCommentsById(id) {
-  const res = await axios.get(`/posts/${id}/comments`, {
+  const res = await axios.get(`/api/posts/${id}/comments`, {
     headers
   })
 
@@ -87,7 +87,7 @@ export async function getAllCommentsById(id) {
 }
 
 export async function deleteComment(id) {
-  const res = await axios.delete(`/comments/${id}`, { headers })
+  const res = await axios.delete(`/api/comments/${id}`, { headers })
 
   return res.data
 }
@@ -95,7 +95,7 @@ export async function deleteComment(id) {
 export async function addComment({body, author, parentId}) {
   const id = uuidV1()
   const timestamp = Date.now()
-  const res = await axios.post(`/comments`, {
+  const res = await axios.post(`/api/comments`, {
     id, timestamp, body, author, parentId
   }, { headers })
 
@@ -104,7 +104,7 @@ export async function addComment({body, author, parentId}) {
 
 export async function editComment({id, body}) {
   const timestamp = Date.now()
-  const res = await axios.put(`/comments/${id}`, {
+  const res = await axios.put(`/api/comments/${id}`, {
     body, timestamp
   }, { headers })
 
